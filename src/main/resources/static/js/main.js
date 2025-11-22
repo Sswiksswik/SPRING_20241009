@@ -124,3 +124,13 @@
     
 })(jQuery);
 
+// confirmClose()함수 추가용
+
+
+function confirmClose() {
+    
+    if (confirm("정말 창을 닫으시겠습니까?????")) {
+        window.close(); 
+    }
+}
+
