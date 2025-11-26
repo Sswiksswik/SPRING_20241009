@@ -57,4 +57,15 @@ Testservice testService; // DemoController 클래스 아래 객체 생성
 
 }
 
+/*
+ * 이동됨 -> com.example.demo.controller.BlogController
+ * 아래의 article_list() 매핑은 BlogController로 옮겨졌습니다.
+ * 원본은 삭제하지 않고 주석으로 보존합니다.
+ *
+@GetMapping("/article_list")
+public String article_list() {
+    return "article_list";
+}
+*/
+
 
