@@ -1,11 +1,5 @@
 package com.example.demo.controller; // 현재 폴더 위치
 
-/*
- * 참고 (이동됨):
- * 아래의 컨트롤러 엔드포인트 메서드들은 프로젝트 곳곳에 분산되어 있던 것을
- * 이 파일의 BlogController 클래스 하나로 통합했습니다. 사용자가 요청하신 대로
- * 원본은 삭제하지 않고 원래 위치에 주석으로 보존해 두었습니다.
- */
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

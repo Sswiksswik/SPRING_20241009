@@ -15,7 +15,7 @@ public class BlogRestController {
     public ResponseEntity<Article> addArticle(@ModelAttribute AddArticleRequest request) { // 아직 없음(에러)
     Article saveArticle = blogService.save(request); // 게시글 저장
     return ResponseEntity.status(HttpStatus.CREATED) // 상태 코드 및 게시글 정보 반환
-    .body(saveArticle);
+        .body(saveArticle);
     }
 }
 

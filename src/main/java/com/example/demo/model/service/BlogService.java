@@ -45,19 +45,4 @@ public class BlogService {
 	}
 
 
-
-
-	// @GetMapping("/article_list") // 게시판 링크 지정
-	// public String article_list(Model model) {
-	//     List<Article> list = blogService.findAll(); // 게시판 리스트
-	//     model.addAttribute("articles", list); // 모델에 추가
-	//     return "article_list"; // .HTML 연결
-	// }
-
-	// @GetMapping("/board_list") // 새로운 게시판 링크 지정
-	// public String board_list(Model model) {
-	//     List<Board> list = blogService.findAll(); // 게시판 전체 리스트
-	//     model.addAttribute("articles", list); // 모델에 추가
-	//     return "board_list"; // .HTML 연결
-	// }
-
+}
