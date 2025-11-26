@@ -1,7 +1,10 @@
 package com.example.demo
 ;
+import com.example.demo.model.domain.TestDB;
 import com.example.demo.model.service.testservice
 ; // 최상단 서비스 클래스 연동 추가
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller
 ;
 import org.springframework.ui.Model
@@ -44,28 +47,19 @@ public class DemoController
     return "thymeleaf_test1";
     }
 @Autowired
-Testservice testService; // DemoController 클래스 아래 객체 생성
-    
+Testservice testService;
+
 @GetMapping("/testdb")
+public String getAllTestDBs(Model model) {
 
-    public String getAllTestDBs(Model model) {
-    TestDB test = testService.findByName("홍길동");
-    model.addAttribute("data4", test);
-    System.out.println("데이터 출력 디버그 : " + test);
+    List<TestDB> userList = testService.findAllTestDBs(); // findAllTestDBs() 메서드 사용 가정
+    
+
+    model.addAttribute("users", userList); 
+    
+    System.out.println("데이터 목록 출력 디버그 : " + userList);
     return "testdb";
-    }
-
 }
 
-/*
- * 이동됨 -> com.example.demo.controller.BlogController
- * 아래의 article_list() 매핑은 BlogController로 옮겨졌습니다.
- * 원본은 삭제하지 않고 주석으로 보존합니다.
- *
-@GetMapping("/article_list")
-public String article_list() {
-    return "article_list";
-}
-*/
 
 
