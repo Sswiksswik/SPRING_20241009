@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-
+// import org.springframework.web.bind.annotation.ModelAttribute;
+// import org.springframework.web.bind.annotation.PathVariable;
+// import org.springframework.web.bind.annotation.PutMapping;
+import com.example.demo.model.service.AddArticleRequest;
 import com.example.demo.model.domain.Article;
 import com.example.demo.model.repository.BlogRepository;
 
@@ -22,9 +22,6 @@ public class BlogService {
 		return blogRepository.findAll();
 	}
 
-	public Optional<Article> findById(Long id) {
-		return blogRepository.findById(id);
-	}
 
 	public Article save(AddArticleRequest request) {
 		// DTO가 없는 경우 이곳에 직접 구현 가능
@@ -38,19 +35,14 @@ public class BlogService {
 	public Optional<Article> findById(Long id) { // 게시판 특정 글 조회
 	return blogRepository.findById(id);
 	}
-	public void update(Long id, AddArticleRequest request) {
-	Optional<Article> optionalArticle = blogRepository.findById(id); // 단일 글 조회
-	optionalArticle.ifPresent(article -> { // 값이 있으면
-	article.update(request.getTitle(), request.getContent()); // 값을 수정
-	blogRepository.save(article); // Article 객체에 저장
-	});
-	}
+	// public void update(Long id, AddArticleRequest request) {
+	// Optional<Article> optionalArticle = blogRepository.findById(id); // 단일 글 조회
+	// optionalArticle.ifPresent(article -> { // 값이 있으면
+	// article.update(request.getTitle(), request.getContent()); // 값을 수정
+	// blogRepository.save(article); // Article 객체에 저장
+	// });
+	// }
 	
-	@PutMapping("/api/article_edit/{id}")
-	public String updateArticle(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
-	blogService.update(id, request);
-	return "redirect:/article_list"; // 글 수정 이후 .html 연결
-	}
 
 
 

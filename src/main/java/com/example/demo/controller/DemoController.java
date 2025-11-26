@@ -1,9 +1,11 @@
-package com.example.demo
-;
-import com.example.demo.model.domain.TestDB;
-import com.example.demo.model.service.testservice
-; // 최상단 서비스 클래스 연동 추가
 
+package com.example.demo.controller;
+
+
+import com.example.demo.service.TestService;
+; // 최상단 서비스 클래스 연동 추가
+import com.example.demo.model.domain.TestDB
+; // 최상단 도메인 클래스 연동 추가
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller
 ;
@@ -11,7 +13,7 @@ import org.springframework.ui.Model
 ;
 import org.springframework.web.bind.annotation.GetMapping
 ;
-
+import java.util.List;
 
 
 @Controller // 컨트롤러 어노테이션 명시
@@ -46,20 +48,20 @@ public class DemoController
     model.addAttribute("para2", 002);
     return "thymeleaf_test1";
     }
+    
 @Autowired
-Testservice testService;
+    TestService testService;
 
-@GetMapping("/testdb")
-public String getAllTestDBs(Model model) {
+    @GetMapping("/testdb")
+    public String getAllTestDBs(Model model) {
 
-    List<TestDB> userList = testService.findAllTestDBs(); // findAllTestDBs() 메서드 사용 가정
-    
+        List<TestDB> userList = testService.findAllTestDBs(); 
 
-    model.addAttribute("users", userList); 
-    
-    System.out.println("데이터 목록 출력 디버그 : " + userList);
-    return "testdb";
+        model.addAttribute("users", userList); 
+        
+        System.out.println("데이터 목록 출력 디버그 : " + userList);
+        return "testdb";
+    }
 }
-
 
 
