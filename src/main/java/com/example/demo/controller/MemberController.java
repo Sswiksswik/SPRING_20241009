@@ -71,6 +71,7 @@ public class MemberController {
             // 예외 처리(원본에는 상세 처리가 없음)
         }
     }
+}
 
 //     String email = request.getEmail(); // 이메일 얻기
 //     session.setAttribute("userId", sessionId); // 아이디 이름 설정

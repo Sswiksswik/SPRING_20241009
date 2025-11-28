@@ -1,11 +1,14 @@
 package com.example.demo.controller; // 현재 폴더 위치
-
-
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import jakarta.servlet.http.HttpSession;
+import lombok.RequiredArgsConstructor;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -14,7 +17,7 @@ import com.example.demo.model.domain.Board;
 import com.example.demo.model.service.AddArticleRequest;
 import com.example.demo.model.service.BlogService;
 
-import lombok.RequiredArgsConstructor;
+// import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
@@ -59,11 +62,11 @@ public class BlogController {
 
 @GetMapping("/article_edit/{id}")
 public String article_edit(Model model, @PathVariable Long id) { // 파라미터 정리
-    Optional<Article> list = blogService.findById(id); 
+    Optional<Article> list = blogService.findById(id); //선택한게시판글
     if (list.isPresent()) {
         model.addAttribute("article", list.get()); 
     } else {
-        return "error"; 
+        return "error";
     }
         return "redirect:/article_list"; // .HTML 연결
         }
@@ -77,8 +80,10 @@ public String article_edit(Model model, @PathVariable Long id) { // 파라미터
     public String addArticle(@ModelAttribute AddArticleRequest request) {
         blogService.save(request);
         // 💡 저장 후 목록 페이지로 리다이렉트
-        return "redirect:/article_list"; 
+        return "redirect:/article_list";
     }
+
+    
 
         @PutMapping("/api/article_edit/{id}")
         public String updateArticle(@PathVariable Long id, @ModelAttribute AddArticleRequest request) {
@@ -91,5 +96,15 @@ public String article_edit(Model model, @PathVariable Long id) { // 파라미터
         blogService.delete(id);
         return "redirect:/article_list";
     }
+@ControllerAdvice
+    public static class GlobalExceptionControllerAdvice {
+        
+        @ExceptionHandler(MethodArgumentTypeMismatchException.class)
+        @ResponseStatus(HttpStatus.BAD_REQUEST)
+        public String handleTypeMismatchException(MethodArgumentTypeMismatchException ex, Model model) {
+            
+            
+            return "error_page/article_error";
+        }
+    }
 }
-

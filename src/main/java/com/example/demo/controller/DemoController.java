@@ -2,10 +2,8 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.service.TestService;
-; // 최상단 서비스 클래스 연동 추가
-import com.example.demo.model.domain.TestDB
-; // 최상단 도메인 클래스 연동 추가
+import com.example.demo.model.service.TestService;
+import com.example.demo.model.domain.TestDB; // 최상단 도메인 클래스 연동 추가
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller
 ;

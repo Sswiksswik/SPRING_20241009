@@ -1,4 +1,5 @@
 package com.example.demo.model.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.domain.TestDB;
@@ -18,5 +19,8 @@ public class TestService {
 
     public List<TestDB> findAll() { 
         return testRepository.findAll();
+    }
+    public List<TestDB> findAllTestDBs() { 
+        return testRepository.findAll(); // 기존 findAll() 로직을 재사용
     }
 }
