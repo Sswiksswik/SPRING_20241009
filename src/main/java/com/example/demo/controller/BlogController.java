@@ -62,9 +62,9 @@ public class BlogController {
 
 @GetMapping("/article_edit/{id}")
 public String article_edit(Model model, @PathVariable Long id) { // 파라미터 정리
-    Optional<Article> list = blogService.findById(id); //선택한게시판글
+    Optional<Article> list = Optional.empty(); //선택한게시판글
     if (list.isPresent()) {
-        model.addAttribute("article", list.get()); 
+        model.addAttribute("boards", list);
     } else {
         return "error";
     }
@@ -82,6 +82,12 @@ public String article_edit(Model model, @PathVariable Long id) { // 파라미터
         // 💡 저장 후 목록 페이지로 리다이렉트
         return "redirect:/article_list";
     }
+//     @GetMapping("/board_list") // 새로운 게시판 링크 지정
+//     public String board_list(Model model) {
+//     List<Board> list = blogService.findAll(); // 게시판 전체 리스트, 기존 Article에서 Board로 변경됨
+//     model.addAttribute("articles", list); // 모델에 추가
+//     return "board_list"; // .HTML 연결
+// }
 
     
 
@@ -107,4 +113,15 @@ public String article_edit(Model model, @PathVariable Long id) { // 파라미터
             return "error_page/article_error";
         }
     }
+    @GetMapping("/board_view/{id}") // 게시판 링크 지정
+public String board_view(Model model, @PathVariable Long id) {
+Optional<Board> list = blogService.findById(id); // 선택한 게시판 글
+if (list.isPresent()) {
+model.addAttribute("boards", list.get()); // 존재할 경우 실제 Board 객체를 모델에 추가
+} else {
+// 처리할 로직 추가 (예: 오류 페이지로 리다이렉트, 예외 처리 등)
+return "/error_page/article_error"; // 오류 처리 페이지로 연결
+}
+return "board_view"; // .HTML 연결
+}
 }
