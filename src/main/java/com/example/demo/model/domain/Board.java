@@ -5,12 +5,12 @@ import jakarta.persistence.*;
 
 @Getter
 @Entity
-@Table(name = "Board") 
+@Table(name = "Board")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Builder 
+@Builder
 public class Board {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
