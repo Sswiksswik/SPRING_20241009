@@ -7,6 +7,8 @@ import jakarta.persistence.*; // 기존 javax 후속 버전
 @Entity // 아래 객체와 DB 테이블을 매핑. JPA가 관리
 @Table(name = "Borad") // 테이블 이름을 지정. 없는 경우 클래스이름으로 설정
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // 외부 생성자 접근 방지
+@AllArgsConstructor 
+@Builder
 // @Builder // 생성자에 빌더 패턴 적용(불변성)
 // public class Board {
 //     @Id // 기본 키
@@ -15,10 +17,10 @@ import jakarta.persistence.*; // 기존 javax 후속 버전
 //     private Long id;
 
 //     @Column(name = "title", nullable = false) // null 불가
-//     private String title = "";
+//     private String title ;
 
 //     @Column(name = "content", nullable = false)
-//     private String content = "";
+//     private String content ;
 
 //     public Board(String title, String content) {
 //         this.title = title;
@@ -34,12 +36,30 @@ public class Member {
     private Long id;
 
     @Column(name = "name", nullable = false) // null 불가
-    private String name = "";
+    private String name ;
 
     @Column(name = "email", unique = true, nullable = false) // unique 중복 불가
-    private String email = "";
+    private String email ;
 
     @Column(name = "password", nullable = false)
-    private String password = "";
+    private String password ;
+
+    @Column(name = "age", nullable = false)
+    private String age ;
+
+    @Column(name = "mobile", nullable = false)
+    private String mobile ;
+
+    @Column(name = "address", nullable = false)
+    private String address ;
+
+    public void update(String name, String email, String password, String age, String mobile, String address) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.mobile = mobile;
+        this.address = address;
+    }
 
 }

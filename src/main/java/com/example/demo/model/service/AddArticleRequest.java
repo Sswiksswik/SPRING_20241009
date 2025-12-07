@@ -1,54 +1,75 @@
-
-
 package com.example.demo.model.service;
 
-import javax.swing.border.Border;
-
-import com.example.demo.model.domain.Article;
-import com.example.demo.model.domain.Board;
-
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import com.example.demo.model.domain.Article;
 
-import lombok.*; // 어노테이션 자동 생성
+@NoArgsConstructor // 기본 생성자
+@AllArgsConstructor // 모든 필드 생성자
+@Getter // 값 꺼내기용
+public class AddArticleRequest {
+
+    private String title;
+    private String content;
+
+    // Article 객체로 변환하는 메서드
+    public Article toEntity() {
+        return Article.builder()
+                .title(title)
+                .content(content)
+                .build();
+    }
+}
+
+// package com.example.demo.model.service;
+
+// import javax.swing.border.Border;
+
+// import com.example.demo.model.domain.Article;
+// import com.example.demo.model.domain.Board;
+
+// import lombok.*; // 어노테이션 자동 생성
 
 
-@Data
-@NoArgsConstructor // 기본 생성자 추가
-@AllArgsConstructor // 모든 필드 값을 파라미터로 받는 생성자 추가
+// @Data
+// @Builder
+// @NoArgsConstructor // 기본 생성자 추가
+// @AllArgsConstructor // 모든 필드 값을 파라미터로 받는 생성자 추가
+    
 // public class AddArticleRequest {
 //     private String title;
 //     private String content;
+//     private String user;
+//     private String newdate;
+//     private String count;
+//     private String likec;
 
 //         public Article toEntity(){ // Article 객체 생성
 //             return Article.builder()
+//             .name(name)
+//             .email(email)
+//             .password(password)
+//             .age(age)
+//             .mobile(mobile)
+//             .address(address)
+//             .build();
+//         }
+//  }
+
+
+
+
+
+//         public Board toEntity(){ // 보드 객체 생성
+//             return Board.builder()
 //                 .title(title)
 //                 .content(content)
+//                 .user(user)
+//                 .newdate(newdate)
+//                 .count(count)
+//                 .likec(likec)
 //                 .build();
 //         }
 // }
-
-
-
-
-public class AddArticleRequest {
-    private String title;
-    private String content;
-    private String user;
-    private String newdate;
-    private String count;
-    private String likec;
-    
-
-        public Board toEntity(){ // Article 객체 생성
-            return Board.builder()
-                .title(title)
-                .content(content)
-                .user(user)
-                .newdate(newdate)
-                .count(count)
-                .likec(likec)
-                .build();
-        }
-}
 
