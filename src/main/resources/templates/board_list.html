@@ -94,7 +94,7 @@
         <li class="page-item" 
             th:each="i : ${#numbers.sequence(0, totalPages - 1)}"
             th:classappend="${i == currentPage} ? 'active'">
-            <a class="page-link" 
+            <a class="page-link"
                th:href="@{/board_list(page=${i}, keyword=${keyword})}" 
                th:text="${i + 1}">1</a>
         </li>

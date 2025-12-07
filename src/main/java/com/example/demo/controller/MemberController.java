@@ -73,6 +73,22 @@ public class MemberController {
     }
 }
 
+@GetMapping("/member_login") // 로그인 페이지 연결
+public String member_login() {
+return "login"; // .HTML 연결
+}
+@PostMapping("/api/login_check") // 로그인(아이디, 패스워드) 체크
+public String checkMembers(@ModelAttribute AddMemberRequest request, Model model) {
+try {
+    Member member = memberService.loginCheck(request.getEmail(), request.getPassword()); // 패스워드 반환
+    model.addAttribute("member", member); // 로그인 성공 시 회원 정보 전달
+return "redirect:/board_list"; // 로그인 성공 후 이동할 페이지
+} catch (IllegalArgumentException e) {
+    model.addAttribute("error", e.getMessage()); // 에러 메시지 전달
+    return "login"; // 로그인 실패 시 로그인 페이지로 리다이렉트
+}
+}
+
 //     String email = request.getEmail(); // 이메일 얻기
 //     session.setAttribute("userId", sessionId); // 아이디 이름 설정
 //     session.setAttribute("email", email); // 이메일 설정

@@ -29,4 +29,9 @@ public class Article {
         this.title = title;
         this.content = content;
     }
+
+    public static Object builder() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'builder'");
+    }
 }

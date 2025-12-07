@@ -7,8 +7,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "Board")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
-@Builder
+
 public class Board {
 
     @Id
@@ -17,6 +16,7 @@ public class Board {
     
     @Column(name = "title", nullable = false)
     private String title;
+
     @Column(name = "content", nullable = false)
     private String content; // 초기값 설정 제거
     
@@ -34,16 +34,35 @@ public class Board {
     private String likec;
 
 
-    public void update(String title, String content) { 
-        this.title = title;
-        this.content = content;
-    
-    }
-    
-    // update 메소드에 추가된 필드를 반영하여 오버로드 (선택적)
-    public void update(String title, String content, String user) {
+    @Builder
+    public Board(String title, String content, String user, String newdate, String count, String likec) {
         this.title = title;
         this.content = content;
         this.user = user;
+        this.newdate = newdate;
+        this.count = count;
+        this.likec = likec;
     }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    
+    }
+
+
+    // public static Object builder() {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'builder'");
+    // }
+    
+    // update 메소드에 추가된 필드를 반영하여 오버로드 (선택적)
+    // public void update(String title, String content, String user) {
+    //     this.title = title;
+    //     this.content = content;
+    //     this.user = user;
+    //     this.newdate = newdate;
+    //     this.count = count;
+        
+    // }
 }

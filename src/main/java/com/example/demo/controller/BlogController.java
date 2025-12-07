@@ -1,4 +1,5 @@
 package com.example.demo.controller; // 현재 폴더 위치
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -27,12 +28,12 @@ public class BlogController {
 
 
 
-    @GetMapping("/article_list")
-    public String article_list(Model model) {
-        List<Article> list = blogService.findAll();
-        model.addAttribute("articles", list);
-        return "article_list";
-    }
+    // @GetMapping("/article_list")
+    // public String article_list(Model model) {
+    //     List<Article> list = blogService.findAll();
+    //     model.addAttribute("articles", list);
+    //     return "article_list";
+    // }
 
     // simple board_list (kept for compatibility) — original no-arg variant
     // @GetMapping("/board_list")
@@ -71,7 +72,7 @@ return "board_list"; // .HTML 연결
         }
         System.out.println("세션 userId: " + userId);
         
-        List<Article> boards = blogService.findAll();
+        List<Board> boards = blogService.findAll();
         model.addAttribute("articles", boards);
         return "board_list";
     }
